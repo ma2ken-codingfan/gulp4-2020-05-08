@@ -53,7 +53,7 @@ const browserSyncOption = {
 
 const htmlCopy = () => {
   return src(srcPath.html)
-
+    .pipe( destPath.html )
 }
 const cssSass = () => {
   return src( srcPath.css )
