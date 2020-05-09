@@ -1,0 +1,19 @@
+{
+  "name": "gulp4-2020-05-08",
+  "version": "1.0.0",
+  "description": "## 参考 url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ma2ken-codingfan/gulp4-2020-05-08.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ma2ken-codingfan/gulp4-2020-05-08/issues"
+  },
+  "homepage": "https://github.com/ma2ken-codingfan/gulp4-2020-05-08#readme"
+}
