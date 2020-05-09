@@ -11,3 +11,19 @@
  npm init
 
  npm install --save-dev gulp
+
+ npx gulp
+
+
+・gulp-sourcemaps（ソースマップ作成）
+・gulp-notify（エラー発生時のアラート出力）
+・gulp-plumber（エラーが発生しても強制終了させない）
+・gulp-postcss（PostCSS利用）
+・postcss-cssnext（CSSNext利用）
+・gulp-clean-css（圧縮）
+・gulp-rename（ファイル名変更）
+
+ $ npm install --save-dev gulp-sourcemaps gulp-notify gulp-plumber gulp-postcss postcss-cssnext gulp-clean-css gulp-rename
+
+
+ ```

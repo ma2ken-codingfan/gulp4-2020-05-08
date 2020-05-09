@@ -11,3 +11,6 @@ const cssSass = () => {
         .pipe( sass() )
         .pipe( dest( 'dist/css/' ) )
  }
+
+ 
+ exports.default = series( cssSass );
