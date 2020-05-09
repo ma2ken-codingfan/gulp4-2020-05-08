@@ -43,3 +43,15 @@ gulp-imagemin JPEG・PNG・SVGそれぞれを圧縮するために、imagemin-mo
 ```
  $ npm install --save-dev gulp-imagemin imagemin-mozjpeg imagemin-pngquant imagemin-svgo
  ```
+
+ ## gulp command
+
+ ```
+ npx gulp
+
+ ```
+
+ - stop gulp
+
+ctrl + c
+
