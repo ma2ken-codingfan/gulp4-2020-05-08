@@ -31,7 +31,7 @@ const browsers = [
 ]
 
 const srcPath = {
-  html: 'src/html/**/*'
+  html: 'src/html/**/*',
   css: 'src/css/**/*.scss',
   js: 'src/js/*.js',
   img: 'src/images/**/*',
