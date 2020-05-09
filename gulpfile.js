@@ -53,77 +53,78 @@ const browserSyncOption = {
 
 const htmlCopy = () => {
   return src(srcPath.html)
+
 }
 const cssSass = () => {
   return src( srcPath.css )
-  .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化
-  .pipe(
-    plumber( //エラーが発生しても処理は止めず
-      {
-          errorHandler: notify.onError( 'Error: <%= error.message %>' )
-          // エラー出力設定
-      }
+    .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化
+    .pipe(
+      plumber( //エラーが発生しても処理は止めず
+        {
+            errorHandler: notify.onError( 'Error: <%= error.message %>' )
+            // エラー出力設定
+        }
+      )
     )
-  )
-  .pipe( sass() )
-  .pipe( postcss( [cssnext(browsers)] ) ) //PostCSS
-  .pipe( dest( destPath.css ) ) //CSSを出力
-  .pipe( cleanCSS() ) //CSSを圧縮
-  .pipe(
-    rename(
-      { extname: '.min.css' } //ファイル名に min.css をつける
+    .pipe( sass() )
+    .pipe( postcss( [cssnext(browsers)] ) ) //PostCSS
+    .pipe( dest( destPath.css ) ) //CSSを出力
+    .pipe( cleanCSS() ) //CSSを圧縮
+    .pipe(
+      rename(
+        { extname: '.min.css' } //ファイル名に min.css をつける
+      )
     )
-  )
-  .pipe( sourcemaps.write( '/maps' ) ) //ソースマップを mapsディレクトリに出力
-.pipe( dest( destPath.css ) ) //圧縮したCSSを出力
- }
+    .pipe( sourcemaps.write( '/maps' ) ) //ソースマップを mapsディレクトリに出力
+  .pipe( dest( destPath.css ) ) //圧縮したCSSを出力
+  }
 
  const jsBabel = () => {
   return src( srcPath.js )
-  .pipe(
-    plumber(
-      {
-        errorHandler: notify.onError( 'Error: <%= error.message %>' )
-      }
+    .pipe(
+      plumber(
+        {
+          errorHandler: notify.onError( 'Error: <%= error.message %>' )
+        }
+      )
     )
-  )
-  .pipe( babel( {
-    presets: [ '@babel/preset-env' ]
-  } ) )
-  .pipe( dest( destPath.js ) )
-  .pipe( uglify() )
-  .pipe(
-    rename(
-      { extname: '.min.js' }
+    .pipe( babel( {
+      presets: [ '@babel/preset-env' ]
+    } ) )
+    .pipe( dest( destPath.js ) )
+    .pipe( uglify() )
+    .pipe(
+      rename(
+        { extname: '.min.js' }
+      )
     )
-  )
-  .pipe( dest( destPath.js ) )
-}
+    .pipe( dest( destPath.js ) )
+  }
 
 const imgImagemin = () => {
   return src(srcPath.img)
-  .pipe(
-    imagemin(
-      [
-        imageminMozjpeg({
-          quality: 80
-        }),
-        imageminPngquant(),
-        imageminSvgo({
-          plugins: [
-            {
-              removeViewbox: false
-            }
-          ]
-        })
-      ],
-      {
-        verbose: true
-      }
+    .pipe(
+      imagemin(
+        [
+          imageminMozjpeg({
+            quality: 80
+          }),
+          imageminPngquant(),
+          imageminSvgo({
+            plugins: [
+              {
+                removeViewbox: false
+              }
+            ]
+          })
+        ],
+        {
+          verbose: true
+        }
+      )
     )
-  )
-  .pipe( dest( destPath.img ) )
-}
+    .pipe( dest( destPath.img ) )
+  }
 
 const browserSyncFunc = () => {
   browserSync.init( browserSyncOption );
