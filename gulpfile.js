@@ -20,6 +20,8 @@ const imageminMozjpeg = require( "imagemin-mozjpeg" );
 const imageminPngquant = require( "imagemin-pngquant" );
 const imageminSvgo = require( "imagemin-svgo" );
 
+const browserSync = require( "browser-sync" );
+
 const browsers = [
   'last 2 versions',
   '> 5%',
@@ -42,6 +44,15 @@ const destPath = {
   css: 'dist/css/',
   js: 'dist/js/',
   img: 'dist/images/'
+}
+
+const browserSyncOption = {
+  proxy: 'localhost',
+  open: true,
+  watchOptions: {
+    debounceDelay: 1000
+  },
+  reloadOnRestart: true,
 }
 
 
@@ -116,4 +127,20 @@ const imgImagemin = () => {
   .pipe( dest( destPath.img ) )
 }
 
-exports.default = series( cssSass, jsBabel, imgImagemin )
+const browserSyncFunc = () => {
+  browserSync.init( browserSyncOption );
+}
+
+const browserSyncReload = ( done ) => {
+  browserSync.reload();
+  done();
+}
+
+const watchFiles = () => {
+  watch( srcPath.css, series( cssSass, browserSyncReload ) )
+  watch( srcPath.js, series( jsBabel, browserSyncReload ) )
+  watch( srcPath.img, series( imgImagemin, browserSyncReload ) )
+  watch( srcPath.html, series( browserSyncReload ) )
+}
+
+exports.default = series( series( cssSass, jsBabel, imgImagemin ), parallel( watchFiles, browserSyncFunc ) );
