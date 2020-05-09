@@ -15,6 +15,8 @@ const sourcemaps = require( "gulp-sourcemaps" );
 const babel = require( "gulp-babel" );
 const uglify = require( "gulp-uglify" );
 
+const browserSync = require( "browser-sync" );
+
 const browsers = [
   'last 2 versions',
   '> 5%',
@@ -37,6 +39,17 @@ const destPath = {
   js: 'dist/js/',
   img: 'dist/images/'
 }
+
+const browserSyncOption = {
+  proxy: 'localhost',
+  open: true,
+  watchOptions: {
+      debounceDelay: 1000
+  },
+  reloadOnRestart: true,
+}
+
+
 const cssSass = () => {
   return src( srcPath.css )
   .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化
@@ -83,5 +96,20 @@ const cssSass = () => {
       .pipe( dest( destPath.js ) )
 }
 
+const browserSyncFunc = () => {
+   browserSync.init( browserSyncOption );
+}
 
-exports.default = series( cssSass, jsBabel );
+const browserSyncReload = ( done ) => {
+  browserSync.reload();
+  done();
+}
+
+const watchFiles = () => {
+  watch( srcPath.css, series( cssSass, browserSyncReload ) )
+  watch( srcPath.js, series( jsBabel, browserSyncReload ) )
+  watch( srcPath.img, series( imgImagemin, browserSyncReload ) )
+  watch( srcPath.html, series( browserSyncReload ) )
+}
+
+exports.default = series( series( cssSass, jsBabel, imgImagemin ), parallel( watchFiles, browserSyncFunc ) );
