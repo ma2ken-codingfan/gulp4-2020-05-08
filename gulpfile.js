@@ -1,7 +1,3 @@
-// ・src →参照元を指定するときに使う
-// ・dest →出力先を指定するときに使う
-// ・watch →ファイルを監視するときに使う
-// ・series（直列処理）とparallel（並列処理） →タスクを設定するときに使う
 const { src, dest, watch, series, parallel } = require( "gulp" );
 const sass = require( "gulp-sass" );
 const plumber = require( "gulp-plumber" );
@@ -34,16 +30,16 @@ const browsers = [
 
 const srcPath = {
   html: 'src/html/**/*',
-  css: 'src/css/**/*.scss',
-  js: 'src/js/*.js',
-  img: 'src/images/**/*',
-  html: './**/*.html',
+  css:  'src/css/**/*.scss',
+  js:   'src/js/**/*.js',
+  img:  'src/images/**/*',
 }
 
 const destPath = {
-  css: 'dist/css/',
-  js: 'dist/js/',
-  img: 'dist/images/'
+  html: 'dist/html/',
+  css:  'dist/css/',
+  js:   'dist/js/',
+  img:  'dist/images/',
 }
 
 const browserSyncOption = {
@@ -55,7 +51,9 @@ const browserSyncOption = {
   reloadOnRestart: true,
 }
 
-
+const htmlCopy = () => {
+  return src(srcPath.html)
+}
 const cssSass = () => {
   return src( srcPath.css )
   .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化

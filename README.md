@@ -38,7 +38,7 @@ gulp-babel と gulp-uglify
 ```
 
 
-gulp-imagemin を使っていきます。そして、JPEG・PNG・SVGそれぞれを圧縮するために、imagemin-mozjpeg・imagemin-pngquant・imagemin-svgo を使っていきます。
+gulp-imagemin JPEG・PNG・SVGそれぞれを圧縮するために、imagemin-mozjpeg・imagemin-pngquant・imagemin-svgo 
 
 ```
  $ npm install --save-dev gulp-imagemin imagemin-mozjpeg imagemin-pngquant imagemin-svgo
