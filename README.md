@@ -25,5 +25,7 @@
 
  $ npm install --save-dev gulp-sourcemaps gulp-notify gulp-plumber gulp-postcss postcss-cssnext gulp-clean-css gulp-rename
 
+ % npm install --save-dev @babel/core @babel/preset-env gulp-babel gulp-uglify
+
 
  ```

@@ -12,6 +12,9 @@ const cleanCSS = require( "gulp-clean-css" );
 const rename = require( "gulp-rename" );
 const sourcemaps = require( "gulp-sourcemaps" );
 
+const babel = require( "gulp-babel" );
+const uglify = require( "gulp-uglify" );
+
 const browsers = [
   'last 2 versions',
   '> 5%',
@@ -55,7 +58,30 @@ const cssSass = () => {
     )
   )
   .pipe( sourcemaps.write( '/maps' ) ) //ソースマップを mapsディレクトリに出力
-  .pipe( dest( 'dist/css/' ) ) //圧縮したCSSを出力
+.pipe( dest( destPath.css ) ) //圧縮したCSSを出力
  }
 
- exports.default = series( cssSass );
+ const jsBabel = () => {
+  return src( srcPath.js )
+      .pipe(
+          plumber(
+              {
+                  errorHandler: notify.onError( 'Error: <%= error.message %>' )
+              }
+          )
+      )
+      .pipe( babel( {
+          presets: [ '@babel/preset-env' ]
+      } ) )
+      .pipe( dest( destPath.js ) )
+      .pipe( uglify() )
+      .pipe(
+          rename(
+              { extname: '.min.js' }
+          )
+      )
+      .pipe( dest( destPath.js ) )
+}
+
+
+exports.default = series( cssSass, jsBabel );

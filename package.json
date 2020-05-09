@@ -15,14 +15,22 @@
   },
   "homepage": "https://github.com/ma2ken-codingfan/gulp4-2020-05-08#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "imagemin-svgo": "^7.1.0",
     "postcss-cssnext": "^3.1.0"
   }
 }
