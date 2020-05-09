@@ -22,8 +22,20 @@ const browsers = [
   'Android >= 5',
 ]
 
+const srcPath = {
+  css: 'src/css/**.scss',
+  js: 'src/js/*.js',
+  img: 'src/images/**/*',
+  html: './**/*.html',
+}
+
+const destPath = {
+  css: 'dist/css/',
+  js: 'dist/js/',
+  img: 'dist/images/'
+}
 const cssSass = () => {
-  return src( 'src/css/**/*.scss' )
+  return src( srcPath.css )
   .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化
   .pipe(
     plumber( //エラーが発生しても処理は止めず
@@ -35,7 +47,7 @@ const cssSass = () => {
   )
   .pipe( sass() )
   .pipe( postcss( [cssnext(browsers)] ) ) //PostCSS
-  .pipe( dest( 'dist/css/' ) ) //CSSを出力
+  .pipe( dest( destPath.css ) ) //CSSを出力
   .pipe( cleanCSS() ) //CSSを圧縮
   .pipe(
     rename(
