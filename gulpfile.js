@@ -139,7 +139,7 @@ const watchFiles = () => {
   watch( srcPath.css, series( cssSass, browserSyncReload ) )
   watch( srcPath.js, series( jsBabel, browserSyncReload ) )
   watch( srcPath.img, series( imgImagemin, browserSyncReload ) )
-  watch( srcPath.html, series( browserSyncReload ) )
+  watch( srcPath.html, series( html.Copy, browserSyncReload ) )
 }
 
 exports.default = series( series( cssSass, jsBabel, imgImagemin ), parallel( watchFiles, browserSyncFunc ) );
