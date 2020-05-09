@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ma2ken-codingfan/gulp4-2020-05-08/issues"
   },
-  "homepage": "https://github.com/ma2ken-codingfan/gulp4-2020-05-08#readme"
+  "homepage": "https://github.com/ma2ken-codingfan/gulp4-2020-05-08#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
