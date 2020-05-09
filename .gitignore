@@ -1,4 +1,12 @@
 node_modules
 dist
 
+src/css/*
+src/js/*
+src/images/*
+
+!src/css/.keep
+!src/js/.keep
+!src/images/.keep
+
 package-lock.json
