@@ -15,6 +15,11 @@ const sourcemaps = require( "gulp-sourcemaps" );
 const babel = require( "gulp-babel" );
 const uglify = require( "gulp-uglify" );
 
+const imagemin = require( "gulp-imagemin" );
+const imageminMozjpeg = require( "imagemin-mozjpeg" );
+const imageminPngquant = require( "imagemin-pngquant" );
+const imageminSvgo = require( "imagemin-svgo" );
+
 const browsers = [
   'last 2 versions',
   '> 5%',
@@ -26,7 +31,8 @@ const browsers = [
 ]
 
 const srcPath = {
-  css: 'src/css/**.scss',
+  html: 'src/html/**/*'
+  css: 'src/css/**/*.scss',
   js: 'src/js/*.js',
   img: 'src/images/**/*',
   html: './**/*.html',
@@ -37,6 +43,8 @@ const destPath = {
   js: 'dist/js/',
   img: 'dist/images/'
 }
+
+
 const cssSass = () => {
   return src( srcPath.css )
   .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化
@@ -63,25 +71,49 @@ const cssSass = () => {
 
  const jsBabel = () => {
   return src( srcPath.js )
-      .pipe(
-          plumber(
-              {
-                  errorHandler: notify.onError( 'Error: <%= error.message %>' )
-              }
-          )
-      )
-      .pipe( babel( {
-          presets: [ '@babel/preset-env' ]
-      } ) )
-      .pipe( dest( destPath.js ) )
-      .pipe( uglify() )
-      .pipe(
-          rename(
-              { extname: '.min.js' }
-          )
-      )
-      .pipe( dest( destPath.js ) )
+  .pipe(
+    plumber(
+      {
+        errorHandler: notify.onError( 'Error: <%= error.message %>' )
+      }
+    )
+  )
+  .pipe( babel( {
+    presets: [ '@babel/preset-env' ]
+  } ) )
+  .pipe( dest( destPath.js ) )
+  .pipe( uglify() )
+  .pipe(
+    rename(
+      { extname: '.min.js' }
+    )
+  )
+  .pipe( dest( destPath.js ) )
 }
 
+const imgImagemin = () => {
+  return src(srcPath.img)
+  .pipe(
+    imagemin(
+      [
+        imageminMozjpeg({
+          quality: 80
+        }),
+        imageminPngquant(),
+        imageminSvgo({
+          plugins: [
+            {
+              removeViewbox: false
+            }
+          ]
+        })
+      ],
+      {
+        verbose: true
+      }
+    )
+  )
+  .pipe( dest( destPath.img ) )
+}
 
-exports.default = series( cssSass, jsBabel );
+exports.default = series( cssSass, jsBabel, imgImagemin )

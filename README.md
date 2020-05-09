@@ -13,7 +13,8 @@
  npm install --save-dev gulp
 
  npx gulp
-
+ ```
+- css
 
 ・gulp-sourcemaps（ソースマップ作成）
 ・gulp-notify（エラー発生時のアラート出力）
@@ -23,9 +24,22 @@
 ・gulp-clean-css（圧縮）
 ・gulp-rename（ファイル名変更）
 
+```
  $ npm install --save-dev gulp-sourcemaps gulp-notify gulp-plumber gulp-postcss postcss-cssnext gulp-clean-css gulp-rename
+```
+- js
 
- % npm install --save-dev @babel/core @babel/preset-env gulp-babel gulp-uglify
+gulp-babel と gulp-uglify 
+
+前者は先ほどお話したBabelってくれるもの。gulp-uglifyはJavaScriptを圧縮
+
+```
+ $ npm install --save-dev @babel/core @babel/preset-env gulp-babel gulp-uglify
+```
 
 
+gulp-imagemin を使っていきます。そして、JPEG・PNG・SVGそれぞれを圧縮するために、imagemin-mozjpeg・imagemin-pngquant・imagemin-svgo を使っていきます。
+
+```
+ $ npm install --save-dev gulp-imagemin imagemin-mozjpeg imagemin-pngquant imagemin-svgo
  ```
