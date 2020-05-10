@@ -4,9 +4,11 @@ dist
 src/css/*
 src/js/*
 src/images/*
+src/html/*
 
 !src/css/.keep
 !src/js/.keep
 !src/images/.keep
+!src/html/.keep
 
 package-lock.json
