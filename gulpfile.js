@@ -53,7 +53,7 @@ const browserSyncOption = {
 }
 
 const htmlCopy = () => {
-  return src(srcPath.html).pipe(destPath.html)
+  return src(srcPath.html).pipe(dest(destPath.html))
 }
 
 const cssSass = () => {
@@ -149,6 +149,6 @@ const watchFiles = () => {
 }
 
 exports.default = series(
-  series(cssSass, jsBabel, imgImagemin),
+  series(cssSass, jsBabel, imgImagemin, htmlCopy),
   parallel(watchFiles, browserSyncFunc)
 )
