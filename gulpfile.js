@@ -21,7 +21,7 @@ const browserSync = require( "browser-sync" );
 const browsers = [
   'last 2 versions',
   '> 5%',
-  'ie = 11',
+  'ie >= 11',
   'not ie <= 10',
   'ios >= 8',
   'and_chr >= 5',
@@ -55,6 +55,7 @@ const htmlCopy = () => {
   return src(srcPath.html)
     .pipe( destPath.html )
 }
+
 const cssSass = () => {
   return src( srcPath.css )
     .pipe( sourcemaps.init() ) //gulp-sourcemapsを初期化
@@ -139,7 +140,7 @@ const watchFiles = () => {
   watch( srcPath.css, series( cssSass, browserSyncReload ) )
   watch( srcPath.js, series( jsBabel, browserSyncReload ) )
   watch( srcPath.img, series( imgImagemin, browserSyncReload ) )
-  watch( srcPath.html, series( html.Copy, browserSyncReload ) )
+  watch( srcPath.html, series( htmlCopy, browserSyncReload ) )
 }
 
 exports.default = series( series( cssSass, jsBabel, imgImagemin ), parallel( watchFiles, browserSyncFunc ) );
