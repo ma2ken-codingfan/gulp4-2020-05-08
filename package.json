@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "autoprefixer": "^9.7.6",
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -33,5 +34,14 @@
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.1.0",
     "postcss-cssnext": "^3.1.0"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 5%",
+    "ie >= 11",
+    "not ie <= 10",
+    "ios >= 8",
+    "and_chr >= 5",
+    "Android >= 5"
+  ]
 }
