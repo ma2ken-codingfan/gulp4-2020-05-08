@@ -77,7 +77,6 @@ const cssSass = () => {
         }),
       ])
     )
-    .pipe(sourcemaps.write("."))
     .pipe(dest(destPath.css)) //CSSを出力
     .pipe(cleanCSS()) //CSSを圧縮
     .pipe(
